@@ -1,5 +1,5 @@
 //Biography JSON
-var skills = ["HTML5 ", "CSS3 ", "JS ", "JAVA ", "C ", "ANDROID PROGRAMMING "];
+var skills = ["HTML5 ", "CSS3 ", "JS ", "JQUERY ", "JAVA ", "C ", "ANDROID PROGRAMMING "];
 var bio = {
 	"name" : "Anand Ramadhin ",
 	"role" : "WEB DEVELOPER ",
@@ -49,13 +49,15 @@ var work = {
 			"workTitle" : "Web Devloper/Systems Administrator",
 			"employer" : "Advanced Intelligent Modeling Solutions",
 			"years_worked" : "2015-2016",
-			"city" : "Marabella"
+			"city" : "Marabella",
+			"description" : "Update and modify existing website. Implemented a Network Attached Storage (NAS) unit to increase efficiency in sharing and collaborating on working files. "
 		},
 		{
 			"workTitle" : "Youth Programme Coordinator",
 			"employer" : "Office of Social and Economic Development",
-			"years_worked" : "2014-2015",
-			"city" : "North East of Trinidad"
+			"years_worked" : "January 2014- present",
+			"city" : "North East of Trinidad",
+			"description" : "Train mentors to empower youth ages 12-15 years to contribute to the betterment of their communities"
 		}
 	]
 };
@@ -96,7 +98,10 @@ var projects = {
 };
 
 var myName = HTMLheaderName.replace("%data%", "Anand Ramadhin");
-$("#name").append(myName);
+var myRole = HTMLheaderRole.replace("%data%", "PROGRAMMER");
+
+$("#header").prepend(myRole);
+$("#header").prepend(myName);
 
 if(bio.skills.length > 0)
 {
@@ -120,9 +125,13 @@ for(jobs in work.jobs)
 {
 	$("#workExperience").append(HTMLworkStart);
 
-	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].workTitle);
+	var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[jobs].employer);
+	var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[jobs].workTitle);
 	var formattedEmployerTitle = formattedEmployer + formattedTitle;
+	var formattedDescription = HTMLworkDescription.replace("%data%", work.jobs[jobs].description);
+	var formattedWorkDate = HTMLworkStart.replace("%data%", work.jobs[jobs].years_worked);
 
-	$(".work-entry:last").append("This is an entry");
+	$(".work-entry:last").append(formattedEmployerTitle);
+	$(".work-entry:last").append(formattedWorkDate);
+	$(".work-entry:last").append(formattedDescription);
 }
