@@ -1,3 +1,14 @@
+
+var myName = HTMLheaderName.replace("%data%", "Anand Ramadhin");
+var myRole = HTMLheaderRole.replace("%data%", "PROGRAMMER");
+var myPic = HTMLbioPic.replace("%data%", "images/me.jpg");
+
+$("#header").prepend(myRole);
+$("#header").prepend(myName);
+$("#header").append(myPic);
+$("#main").append(internationalizeButton);
+
+
 //Biography JSON
 var skills = ["HTML5 ", "CSS3 ", "JS ", "JQUERY ", "JAVA ", "C ", "ANDROID PROGRAMMING "];
 var bio = {
@@ -97,12 +108,6 @@ var projects = {
 	]
 };
 
-var myName = HTMLheaderName.replace("%data%", "Anand Ramadhin");
-var myRole = HTMLheaderRole.replace("%data%", "PROGRAMMER");
-
-$("#header").prepend(myRole);
-$("#header").prepend(myName);
-
 if(bio.skills.length > 0)
 {
 	$("#header").append(HTMLskillsStart);
@@ -121,7 +126,8 @@ if(bio.skills.length > 0)
 	$("#skills").append(formattedSkill);
 }
 
-
+//---------------------------------------------------------------------
+//functions
 function displayWork(){
 	for(jobs in work.jobs)
 	{
@@ -139,10 +145,25 @@ function displayWork(){
 	}
 }
 
-$(document).click(function(loc)){
-	logClicks(x,y);
+function inName(name){
+	name = name.trim().split(" ");
+	console.log(name);
+	name[1] = name[1].toUpperCase();
+	name[0] = name[0].slice(0,1).toUpperCase() +
+		name[0].slice(1).toLowerCase();
+
+	return name[0] + " " + name[1];
 }
 
+//---------------------------------------------------------------------
 //function calls
 displayWork();
+
+$(document).click(function(loc){
+	var x = loc.pageX;
+	var y = loc.pageY;
+	logClicks(x,y);
+});
+
+
 
